@@ -5,24 +5,27 @@
 
 using namespace std;
 
+// deklarasi fungsi reversed
 int reversed(int x);
 
 int main(){
     int n;
     cin >> n; // input banyak bilangan
 
-    int a[n];
+    int a[n]; // insialisasi array
     string str;
 
-    getline(cin >> ws, str);
+    getline(cin >> ws, str); // membaca input
     stringstream s(str);
 
+    // menambahkan input ke array
     int i = 0;
     while (!s.eof()){
         s >> a[i];
         i++;
     }
-
+    
+    // pengecekan apakah ada nilai yang <= 0 atau >= 100
     bool check = false;
     for (int j = 0; j < n; j++){
         if (a[j] <= 0 || a[j] >= 100){
@@ -32,18 +35,21 @@ int main(){
     }
 
     if (check){
-        cout << "Input value exceeds limit!!!" << endl;
+        cout << "Input value exceeds limit!!!" << endl; // pesan error
     } else {
-        for (int j = 0; j < n; j++){
-        a[j] = reversed(a[j]);
-        }
-
-        sort(a, a + n);
-
+        // membalik semua nilai, ex 21 => 12
         for (int j = 0; j < n; j++){
             a[j] = reversed(a[j]);
         }
 
+        sort(a, a + n); // mengurutkan nilai yang sudah dibalik
+
+        // membalik kembali nilai yang sudah diurutkan
+        for (int j = 0; j < n; j++){
+            a[j] = reversed(a[j]);
+        }
+
+        // menampilkan output
         for (int j = 0; j < n; j++){
             cout << a[j] << endl;
         }
